@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Spring } from "react-spring/renderprops";
 const api = {
   key: "93913df5bf36d8f93d5977685127d948",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -7,6 +8,7 @@ const api = {
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
+  const [cod, setCod] = useState({});
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -14,6 +16,7 @@ function App() {
         .then((res) => res.json())
         .then((result) => {
           setWeather(result);
+          setCod(result.cod);
           setQuery("");
           console.log(result);
         });
@@ -74,19 +77,43 @@ function App() {
             onKeyPress={search}
           />
         </div>
-        {typeof weather.main != "undefined" ? (
+        {typeof weather.main !== "undefined" && cod !== "404" ? (
           <div>
-            <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
-              <div className="date">{dateBuilder(new Date())}</div>
-            </div>
-            <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°</div>
-              <div className="weather">{weather.weather[0].main}</div>
-            </div>
+            <Spring
+              from={{ opacity: 0, marginLeft: -500 }}
+              to={{ opacity: 1, marginLeft: 0 }}
+              config={{ delay: 700, duration: 700 }}
+            >
+              {(props) => (
+                <div className="location-box" style={props}>
+                  <div className="location">
+                    {weather.name}, {weather.sys.country}
+                  </div>
+                  <div className="date">{dateBuilder(new Date())}</div>
+                </div>
+              )}
+            </Spring>
+            <Spring
+              from={{ opacity: 0, marginRight: -500 }}
+              to={{ opacity: 1, marginRight: 0 }}
+              config={{ delay: 800, duration: 800 }}
+            >
+              {(props) => (
+                <div className="weather-box" style={props}>
+                  <div className="temp">{Math.round(weather.main.temp)}°</div>
+                  <div className="weather">{weather.weather[0].main}</div>
+                  <div className="options animate__animated animate__backInDown">
+                    Feels like {Math.round(weather.main.feels_like)}° | Humidity
+                    : {weather.main.humidity}% | Min Temp :{" "}
+                    {Math.round(weather.main.temp_min)}° | Max Temp :{" "}
+                    {Math.round(weather.main.temp_max)}°
+                  </div>
+                </div>
+              )}
+            </Spring>
           </div>
+        ) : cod === "404" ? (
+          <div className="loc-unknown">City not found</div>
         ) : (
           ""
         )}

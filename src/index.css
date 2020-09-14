@@ -6,6 +6,7 @@
 
 body {
   font-family: "montseratt", sans-serif;
+  overflow: hidden;
 }
 
 .app {
@@ -110,4 +111,23 @@ main {
   font-size: 48px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .options {
+  color: #ffffff;
+  padding: 20px;
+  border-bottom: 6px solid rgba(127, 127, 138, 0.5);
+  border-radius: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  text-shadow: 4px 4px rgba(50, 50, 70, 0.5);
+}
+
+.loc-unknown {
+  color: #ffffff;
+  margin-top: 200px;
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 4px 4px rgba(50, 50, 70, 0.5);
+  text-align: center;
 }
