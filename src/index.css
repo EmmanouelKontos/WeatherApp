@@ -9,7 +9,7 @@ body {
 }
 
 .app {
-  background-image: url("./assets/sunny-day.jpg");
+  background-image: url("./assets/good-day.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s ease-out;
@@ -17,6 +17,10 @@ body {
 
 .app.cold {
   background-image: url("./assets/snow-day.jpg");
+}
+
+.app.hot {
+  background-image: url("./assets/sunny-day.jpg");
 }
 
 main {
@@ -45,7 +49,7 @@ main {
   border: none;
   outline: none;
 
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.705);
   border-radius: 0px 0px 16px 16px;
   margin-top: -25px;
 
@@ -58,7 +62,7 @@ main {
 }
 
 .search-box .search-bar:focus {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgb(255, 255, 255);
 }
 
 .location-box .location {
@@ -78,8 +82,12 @@ main {
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
 
-.weather-box,
-temp {
+.weather-box {
+  display: grid;
+  place-items: center;
+}
+
+.weather-box .temp {
   position: relative;
   display: inline-block;
   margin: 30px auto;
@@ -97,16 +105,9 @@ temp {
   box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.weather-box,
-weather {
+.weather-box .weather {
   color: #ffffff;
   font-size: 48px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
-}
-
-.weather-box {
-  display: grid;
-  place-items: center;
-  width: 20%;
 }
