@@ -1,7 +1,7 @@
 
 ## Weather App using ReactJs and React Spring
 
-Weather app using openweathermap API.
+Simple app that shows the weather.
 
 ### Built With
 - ReactJS
